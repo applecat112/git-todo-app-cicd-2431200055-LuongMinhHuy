@@ -41,7 +41,9 @@ test('End-to-end user workflow', async () => {
     // 1. Find the delete button within the todo item.
     // 2. Click the delete button.
     // 3. Assert that the todo item is no longer visible on the page.
-
+    const deleteButton = todoItem.getByRole('button', { name: /delete/i });
+    await deleteButton.click();
+    await expect(window.locator('.todo-item')).toHaveCount(0);
 
     // Close the app
     await electronApp.close();
